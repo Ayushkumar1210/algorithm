@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disk Scheduling Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Disk Scheduling Simulator</h1>
+            <button id="themeToggle" class="theme-toggle">🌙</button>
+        </header>
+
+        <div class="input-section">
+            <div class="form-group">
+                <label for="algorithm">Select Algorithm:</label>
+                <select id="algorithm" required>
+                    <option value="fcfs">First-Come-First-Serve (FCFS)</option>
+                    <option value="sstf">Shortest Seek Time First (SSTF)</option>
+                    <option value="scan">SCAN (Elevator)</option>
+                    <option value="cscan">C-SCAN</option>
+                    <option value="look">LOOK</option>
+                    <option value="clook">C-LOOK</option>
+                    <option value="nstep">N-Step SCAN</option>
+                    <option value="fscan">FSCAN</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="requests">Disk Request Sequence (comma-separated):</label>
+                <input type="text" id="requests" placeholder="53, 98, 183, 37, 122, 14, 124, 65, 67" required>
+            </div>
+
+            <div class="form-group">
+                <label for="initialHead">Initial Head Position:</label>
+                <input type="number" id="initialHead" value="50" required>
+            </div>
+
+            <div class="form-group">
+                <label for="diskSize">Disk Size:</label>
+                <input type="number" id="diskSize" value="200" required>
+            </div>
+
+            <div class="button-group">
+                <button id="simulate" class="primary">Simulate</button>
+                <button id="reset" class="secondary">Reset</button>
+            </div>
+        </div>
+
+        <div class="visualization-section">
+            <div class="canvas-container">
+                <canvas id="seekGraph"></canvas>
+            </div>
+            
+            <div class="metrics">
+                <div class="metric-card">
+                    <h3>Total Head Movement</h3>
+                    <p id="totalHeadMovement">0</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Seek Time</h3>
+                    <p id="seekTime">0 ms</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Average Seek Time</h3>
+                    <p id="avgSeekTime">0 ms</p>
+                </div>
+            </div>
+
+            <div class="sequence-visualization">
+                <h3>Request Sequence Visualization</h3>
+                <div id="sequenceContainer" class="sequence-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="algorithms.js"></script>
+    <script src="visualization.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
